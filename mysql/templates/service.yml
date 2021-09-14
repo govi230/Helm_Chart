@@ -2,11 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.app }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace | default "mysql" }}
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: {{ .Values.app }}
   ports:
       # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
-          - port: 81
+          - port: {{ .Values.port | default 3306 }}
+            targetPort: {{ .Values.targetPort | default 3306 }}

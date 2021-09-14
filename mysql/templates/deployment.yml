@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.app }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace | default "mysql" }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
       app: {{ .Values.app }}
@@ -14,26 +14,26 @@ spec:
         app: {{ .Values.app }}
     spec:
       containers:
-      - image: {{ .Values.image }}
+      - image: {{ .Values.image | default "mysql:5.7" }}
         name: {{ .Values.app }}
         env:
         - name: MYSQL_DATABASE
           valueFrom:
                   secretKeyRef:
                           name: mysql
-                          key: dbname
+                          key: MYSQL_DATABASE
         - name: MYSQL_USER
           valueFrom:
                   secretKeyRef:
                           name: mysql
-                          key: username
+                          key: MYSQL_USER
         - name: MYSQL_PASSWORD
           valueFrom:
                   secretKeyRef:
                           name: mysql
-                          key: password
+                          key: MYSQL_PASSWORD
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
                   secretKeyRef:
                           name: mysql
-                          key: rootpassword
+                          key: MYSQL_ROOT_PASSWORD

@@ -1,14 +1,19 @@
 # Wordpress Namespace
-namespace: mysql
+#namespace: mysql
 
 # App
 app: mysql
 
 # Image Name
-image: mysql:5.7
+#image: mysql:5.7
 
 # Wordpress Pod Replica
-replicaCount: 1
+#replicaCount: 1
 
-# Server
-port: 81
+# Service
+# port: 3306
+# targetPort: 3306
+MYSQL_DATABASE: wordpress
+MYSQL_USER: govind
+MYSQL_PASSWORD: redhat
+MYSQL_ROOT_PASSWORD: redhat
