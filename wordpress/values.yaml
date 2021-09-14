@@ -1,0 +1,16 @@
+# Wordpress Namespace
+namespace: wordpress-frontend
+
+# App
+app: wordpress
+
+# Image Name
+image: wordpress:5.1.1-php7.3-apache 
+
+# Wordpress Pod Replica
+replicaCount: 1
+
+# Service
+port: 80
+targetPort: 80
+nodePort: 30007
