@@ -1,0 +1,14 @@
+# Wordpress Namespace
+namespace: mysql
+
+# App
+app: mysql
+
+# Image Name
+image: mysql:5.7
+
+# Wordpress Pod Replica
+replicaCount: 1
+
+# Server
+port: 81
